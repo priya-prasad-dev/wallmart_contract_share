@@ -22,18 +22,16 @@ const WallmartPurchase = () => {
     const web3 = new Web3(Web3.givenProvider);
     const contract = new web3.eth.Contract(abi, address);
     const Accounts = await web3.eth.getAccounts();
-    const price = await contract.methods.products(mydata._wallmartRequestID).call();
-    const quanty = await contract.methods.wallmartRequest(mydata._wallmartRequestID).call();
-console.log("price",price);
-console.log("quantyy",quanty.quantity);
-console.log("amount-",price.supplierPrice)
-
-    const productCost = price.supplierPrice * quanty.quantity;
-      console.log("pcost-",productCost)
+    const product_info = await contract.methods.products(mydata._wallmartRequestID).call();
+    const walllmart_req_info = await contract.methods.wallmartRequest(mydata._wallmartRequestID).call();
+    console.log("full_prdct_info",product_info);
+    console.log("amnt_per_unit",product_info.supplierPrice)
+    console.log("wall_req_quant",walllmart_req_info.quantity);
+    const productCost = product_info.supplierPrice * walllmart_req_info.quantity;
+      console.log("total_amnt",productCost)
     const request = await contract.methods
     .purchaseByWallmart(mydata._wallmartRequestID,mydata._sellingPrice)
     .send({ from: Accounts[0],value:productCost})
-   
     console.log(request);
   };
  
