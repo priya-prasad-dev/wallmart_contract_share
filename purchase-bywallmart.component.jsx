@@ -13,7 +13,7 @@ const WallmartPurchase = () => {
     const wallmartRequestID = useRef();
     const sellingPrice = useRef();
   
-  const DisplayVal = async () => {
+  const handleSubmit = async () => {
     const mydata = {
         _wallmartRequestID: wallmartRequestID.current.value,
         _sellingPrice: sellingPrice.current.value,
@@ -70,7 +70,7 @@ const WallmartPurchase = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
-                  onClick={DisplayVal}
+                  onClick={handleSubmit}
                 >
                   Submit
                 </Button>
