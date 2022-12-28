@@ -313,5 +313,6 @@ contract Wallmart is ERC1155{
         products[_customerRequestID].pStatus = ProductStatus.ReceivedByCustomer;////
         customerRequest[_customerRequestID] = cRequest;
         _setApprovalForAll(wallmartAddress, msg.sender, false);
+        
     }
 }
